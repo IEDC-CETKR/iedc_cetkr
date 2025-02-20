@@ -1,0 +1,120 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/images/iedccetlo.png';
+import cet from '../assets/images/cetlogo.png';
+
+
+const footerData = {
+  quickLinks: [
+    { href: "/", text: "Home" },
+    { href: "/events", text: "Events" },
+    { href: "/team", text: "Team" },
+    { href: "/contact", text: "Contact" },
+  ],
+  socialLinks: [
+    { href: "https://instagram.com/iedc.cetkr", icon: "fa-brands fa-instagram" },
+    { href: "https://linkedin.com/company/iedc.cetkr", icon: "fa-brands fa-linkedin" },
+    { href: "https://github.com/orgs/IEDC-CETKR/", icon: "fa-brands fa-github" },
+  ]
+};
+---
+
+<footer class="bg-gray-100 text-gray-800 py-12">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      {/* Column 1: CET Info */}
+      <div class="space-y-4">
+        <div class="flex items-center space-x-4">
+          <Image 
+            src={cet} 
+            alt="CET Logo" 
+            class="w-20 h-auto object-contain"
+          />
+          <div>
+            <h3 class="text-lg font-semibold">College of Engineering Trikaripur</h3>
+          </div>
+        </div>
+        <div class="text-md text-gray-700">
+          <p>Cheemeni, Kasaragod</p>
+          <p>Kerala, India</p>
+          <p class="mt-2">
+            <a href="mailto:iedc@cetkr.ac.in" class="hover:text-[#e85a4f]">
+              iedc@cetkr.ac.in
+            </a>
+          </p>
+        </div>
+      </div>
+
+      {/* Column 2: Quick Links */}
+      <div>
+        <h3 class="text-lg font-semibold mb-4 border-b pb-2 mr-4">Quick Links</h3>
+        <ul class="space-y-2">
+          {footerData.quickLinks.map((link) => (
+            <li>
+              <a 
+                href={link.href} 
+                class="text-gray-700 hover:text-[#e85a4f] transition-colors"
+              >
+                {link.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Column 3: Connect With Us */}
+      <div>
+        <h3 class="text-lg font-semibold mb-4 border-b pb-2">Connect With Us</h3>
+        <div class="flex space-x-6 mb-4">
+          {footerData.socialLinks.map((social) => ( 
+            <a 
+              href={social.href} 
+              target="_blank" 
+              class="text-gray-700 hover:text-[#e85a4f] text-2xl transition-colors"
+            >
+              <i class={social.icon}></i>
+            </a>
+          ))}
+        </div>
+        <p class="text-md text-gray-600 mt-2">
+          Follow us on social media for the latest updates and opportunities.
+        </p>
+      </div>
+
+      {/* Column 4: IEDC Info */}
+      <div>
+        <div class="flex flex-col items-center">
+          <Image 
+            src={logo} 
+            alt="IEDC Logo" 
+            class="w-88 h-auto object-contain"
+          />
+          <div class=" text-center">
+            <p class="text-md text-gray-600">
+              Innovation & Entrepreneurship<br />Development Centre
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Bottom Row */}
+    <div class="border-t border-gray-300 mt-8 pt-4 text-center text-sm text-gray-600">
+      &copy; {new Date().getFullYear()} IEDC CETKR. All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
+<style>
+  @media (max-width: 768px) {
+    footer .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    footer .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

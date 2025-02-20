@@ -1,0 +1,127 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+---
+
+<Layout title="About IEDC CETKR - Pioneering Innovation">
+  <main class="bg-[#eae7dc] text-[#8e8d8a] min-h-screen">
+    <section class="container mt-20 md:mt-24 mx-auto px-4 py-16 md:py-24">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6 animate-slide-in-left">
+          <h1 class="text-3xl md:text-4xl font-bold text-[#e85a4f] mb-6">
+            Pioneering Innovation at CETKR
+          </h1>
+          <div class="space-y-4 text-medium md:text-2xl leading-relaxed">
+            <p>
+              The Innovation and Entrepreneurship Development Cell (IEDC) at College of Engineering Trikaripur 
+              is a transformative platform designed to ignite the entrepreneurial spirit of our students 
+              and cultivate a culture of innovative thinking.
+            </p>
+            <p>
+              We are not just another campus initiative – we are a launchpad for future innovators, 
+              dreamers, and change-makers who will shape the technological landscape of tomorrow.
+            </p>
+          </div>
+        </div>
+        <div class="flex justify-center items-center bg-[#d8c3a5]/30 rounded-lg p-8 animate-bounce-in">
+          <div class="text-center">
+            <div class="text-6xl text-[#e85a4f] mb-2">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-semibold text-[#e85a4f] mb-2">
+              Innovate.<br/><hr> Inspire.<br/><hr> Impact.<hr>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class=" py-16 text-medium md:text-xl">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-[#e85a4f] mb-12">
+          Our Vision and Mission
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div class="bg-[#d8c3a5]/30 p-8 rounded-lg shadow-md hover:shadow-xl transition-all">
+            <div class="text-4xl text-[#e85a4f] mb-4">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-semibold text-[#e85a4f] mb-4">
+              Our Vision
+            </h3>
+            <p class="text-[#8e8d8a] leading-relaxed">
+              To establish College of Engineering Trikaripur as a premier hub of innovation and entrepreneurship, 
+              where students are empowered to transform creative ideas into viable solutions that address 
+              local and global challenges.
+            </p>
+          </div>
+          <div class="bg-[#d8c3a5]/30 p-8 rounded-lg shadow-md hover:shadow-xl transition-all">
+            <div class="text-4xl text-[#e85a4f] mb-4">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-semibold text-[#e85a4f] mb-4">
+              Our Mission
+            </h3>
+            <ul class="text-[#8e8d8a] space-y-3 list-disc pl-5">
+              <li>Provide structured entrepreneurship training and workshops</li>
+              <li>Offer mentorship and personalized guidance</li>
+              <li>Create platforms for idea validation and prototyping</li>
+              <li>Connect students with industry experts and potential investors</li>
+              <li>Foster a culture of continuous learning and innovation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#d8c3a5]/30 py-16 text-medium md:text-xl">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-[#e85a4f] mb-12">
+          Our Core Values
+        </h2>
+        <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              icon: "lightbulb",
+              title: "Innovation",
+              description: "Championing creative thinking and breakthrough solutions to real-world challenges."
+            },
+            {
+              icon: "rocket",
+              title: "Entrepreneurship",
+              description: "Transforming ideas into sustainable ventures through strategic support."
+            },
+            {
+              icon: "users",
+              title: "Collaboration",
+              description: "Building a supportive ecosystem of mutual growth and shared learning."
+            }
+          ].map((value) => (
+            <div class="bg-[#eae7dc] p-6 rounded-lg text-center hover:shadow-lg transition-shadow">
+              <div class="text-4xl md:text-5xl text-[#e85a4f] mb-4">
+                <i class={`fas fa-${value.icon}`}></i>
+              </div>
+              <h3 class="text-xl md:text-2xl font-semibold text-[#e85a4f] mb-3">
+                {value.title}
+              </h3>
+              <p class="text-[#8e8d8a]">
+                {value.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+ 
+  </main>
+</Layout>
+
+<style>
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    section {
+      padding: 2rem 1rem;
+    }
+  }
+</style>

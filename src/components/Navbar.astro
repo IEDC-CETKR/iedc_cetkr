@@ -1,0 +1,223 @@
+---
+// Navbar.astro
+import { Image } from "astro:assets";
+import logo from "../assets/images/square.png";
+---
+
+<nav id="main-navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-in-out">
+  <div class="container mx-auto px-4 py-3 md:px-6 lg:px-8">
+    <div class="flex items-center justify-between">
+      {/* Logo */}
+      <div class="flex items-center">
+        <a href="/" class="flex items-center space-x-2 group">
+          <Image
+            src={logo}
+            alt="IEDC Logo"
+            class="-mt-5 h-24 w-28 object-contain transition-transform"
+          />
+          <span
+            class="text-3xl font-bold text-[#E85A4F]"
+          >
+            IEDC<br />CETKR
+          </span>
+        </a>
+      </div>
+
+      {/* Desktop Navigation */}
+      <div class="hidden md:flex items-center space-x-6">
+        <nav class="flex space-x-6">
+          {
+            [
+              { href: "/", label: "Home" },
+              { href: "/about", label: "About" },
+              { href: "/team", label: "Team" },
+              { href: "/events", label: "Events" },
+            ].map((link) => (
+              <a
+                href={link.href}
+                class="
+                text-xl font-semibold text-[#E85A4F] 
+                px-3 py-2 
+                animated-underline
+                transition-all duration-300 
+                ease-in-out
+                tracking-wide
+              "
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+
+      {/* Mobile Menu Toggle */}
+      <div class="md:hidden">
+        <button
+          id="mobile-menu-toggle"
+          class="hover:text-white
+            focus:outline-none focus:ring-2 focus:ring-[#e85a4f]
+            rounded-lg p-2"
+          aria-label="Toggle mobile menu"
+        >
+          <svg
+            class="w-10 h-10"
+            fill="none"
+            stroke="#e85a4f"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {/* Mobile Menu (Hidden by default) */}
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 bg-[#eae7dc] z-40
+      transform -translate-x-full
+      transition-transform duration-300 ease-in-out
+      md:hidden"
+  >
+    <div class="flex flex-col h-full p-6">
+      <div class="flex justify-end mb-8">
+        <button
+          id="mobile-menu-close"
+          class="text-[#E85A4F] hover:text-[#e98074]
+            focus:outline-none focus:ring-2 focus:ring-[#e85a4f]
+            rounded-lg p-2"
+          aria-label="Close mobile menu"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="space-y-4">
+        {
+          [
+            { href: "/", label: "Home" },
+            { href: "/about", label: "About" },
+            { href: "/team", label: "Team" },
+            { href: "/events", label: "Events" },
+          ].map((link) => (
+            <a
+              href={link.href}
+              class="
+                block text-xl font-semibold text-[#E85A4F] 
+                px-4 py-3 
+                animated-underline
+                text-center
+                transition-all duration-300 
+                ease-in-out
+              "
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
+</nav>
+
+<style>
+  #main-navbar {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  #main-navbar.scrolled {
+    background-color: rgba(234, 231, 220, 0.95);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* Custom animated underline */
+  .animated-underline {
+    position: relative;
+    text-decoration: none;
+  }
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px; /* Increased underline thickness */
+    bottom: -4px;
+    left: 0;
+    background-color: #e85a4f;
+    transition: width 0.3s ease-in-out;
+  }
+  .animated-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Custom scrollbar for mobile menu */
+  #mobile-menu {
+    scrollbar-width: thin;
+    scrollbar-color: #2e9cca #25274d;
+  }
+
+  #mobile-menu::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  #mobile-menu::-webkit-scrollbar-track {
+    background: #25274d;
+  }
+
+  #mobile-menu::-webkit-scrollbar-thumb {
+    background-color: #2e9cca;
+    border-radius: 4px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('main-navbar');
+    
+    if (navbar) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+    } else {
+      console.warn('Navbar element not found. Scroll effect will not be applied.');
+    }
+
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenuClose = document.getElementById("mobile-menu-close");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (mobileMenuToggle && mobileMenuClose && mobileMenu) {
+      mobileMenuToggle.addEventListener("click", () => {
+        mobileMenu.classList.remove("-translate-x-full");
+      });
+
+      mobileMenuClose.addEventListener("click", () => {
+        mobileMenu.classList.add("-translate-x-full");
+      });
+    } else {
+      console.warn('One or more mobile menu elements not found. Mobile menu functionality will not work.');
+    }
+  });
+</script>

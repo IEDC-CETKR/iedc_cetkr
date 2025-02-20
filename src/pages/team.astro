@@ -1,0 +1,301 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+---
+
+<Layout title="IEDC CETKR - Our Team">
+  <main class="bg-[#eae7dc] text-[#8e8d8a] min-h-screen">
+    <section class="container mt-26 mx-auto px-4 py-16 md:py-24">
+      <h1
+        class="text-3xl md:text-4xl font-bold text-[#e85a4f] text-center mb-16 animate-fade-in"
+      >
+        Meet Our Team
+      </h1>
+      <h2
+        class="text-3xl md:text-4xl font-bold text-[#8e8d8a] text-center mb-12 animate-fade-in"
+      >
+        INSTITUTE ENTREPRENEURSHIP COUNCIL
+      </h2>
+
+      {/* First Row - Leadership */}
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mb-12">
+        {
+          [
+            {
+              name: "Dr. MAHESH V V",
+              role: "Chairman",
+              description: "Principal, Cetkr",
+              icon: "/staffs/mahesh.jpg",
+            },
+            {
+              name: "ADIL NASSER",
+              role: "Nodal Officer",
+              description: "Asst. Professor, EEE Dept., Cetkr",
+              icon: "/staffs/adil.jpg",
+            },
+            {
+              name: "REEJAMOL K J",
+              role: "Nodal Officer",
+              description: "Asst. Professor, CSE Dept., Cetkr",
+              icon: "/staffs/reeja.jpg",
+            },
+          ].map((member, index) => (
+            <div
+              class="bg-[#d8c3a5] p-6 rounded-lg text-center hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-2 flex flex-col team-member"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              <div class="mb-4 flex justify-center">
+                <img
+                  src={member.icon}
+                  alt={member.name}
+                  class="w-32 h-32 object-cover rounded-full border-4 border-[#e85a4f] shadow-lg"
+                />
+              </div>
+              <h3 class="text-xl font-semibold text-[#e85a4f] mb-2">
+                {member.name}
+              </h3>
+              <p class="text-base text-[#8e8d8a] mb-3">{member.role}</p>
+              <p class="text-sm text-[#8e8d8a] italic flex-grow">
+                "{member.description}"
+              </p>
+            </div>
+          ))
+        }
+      </div>
+
+      {/* Second Row - Department Coordinators */}
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 md:gap-6">
+        {
+          [
+            {
+              name: "BINESH MOHAN P",
+              role: "EEE Dept. Coordinator",
+              description: "Asst. Professor, EEE Dept., Cetkr",
+              icon: "/staffs/binesh.jpg",
+            },
+            {
+              name: "JIJINA V",
+              role: "CE Dept. Coordinator",
+              description: "Asst. Professor, CE Dept., Cetkr",
+              icon: "/staffs/jijina.jpg",
+            },
+            {
+              name: "VRINDA K N",
+              role: "CSE Dept. Coordinator",
+              description: "Asst. Professor, CSE Dept., Cetkr",
+              icon: "/staffs/vrinda.jpg",
+            },
+            {
+              name: "NEETHU MOHAN P",
+              role: "ECE Dept. Coordinator",
+              description: "Asst. Professor, ECE Dept., Cetkr",
+              icon: "/staffs/neethu.jpg",
+            },
+            {
+              name: "ANEESH KUMAR P",
+              role: "Applied Science Dept. Coordinator",
+              description: "Asst. Professor, Applied Science Dept., Cetkr",
+              icon: "/staffs/aneesh.jpg",
+            },
+          ].map((member, index) => (
+            <div
+              class="bg-[#d8c3a5] p-4 rounded-lg text-center hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-2 flex flex-col team-member"
+              style={`animation-delay: ${(index + 3) * 100}ms`}
+            >
+              <div class="mb-3 flex justify-center">
+                <img
+                  src={member.icon}
+                  alt={member.name}
+                  class="w-24 h-24 object-cover rounded-full border-3 border-[#e85a4f] shadow-md"
+                />
+              </div>
+              <h3 class="text-sm md:text-base font-semibold text-[#e85a4f] mb-1">
+                {member.name}
+              </h3>
+              <p class="text-xs md:text-sm text-[#8e8d8a] mb-2">
+                {member.role}
+              </p>
+              <p class="text-sm text-[#8e8d8a] italic flex-grow">
+                "{member.description}"
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <h2
+      class="mt-4 text-3xl md:text-4xl font-bold text-[#8e8d8a] text-center mb-12 animate-fade-in"
+    >
+      EXECOM 25"
+    </h2>
+      {/* First Row - Leadership */}
+      <div class="container mx-auto px-4 mb-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mb-12">
+          {
+            [
+              {
+                name: "MUHAMMED SIYAD",
+                role: "Chief Executive Officer",
+                description: "S6 CSE A, CETKR",
+                icon: "/students/siyad.jpg",
+              },
+              {
+                name: "SELMA INTHISAN",
+                role: "Chief Executive Officer",
+                description: "S6 CSE B, CETKR",
+                icon: "/students/selma .jpg",
+              },
+            ].map((member, index) => (
+              <div
+                class="bg-[#d8c3a5] p-6 rounded-lg text-center hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-2 flex flex-col team-member"
+                style={`animation-delay: ${index * 100}ms`}
+              >
+                <div class="mb-4 flex justify-center">
+                  <img
+                    src={member.icon}
+                    alt={member.name}
+                    class="w-32 h-32 object-cover rounded-full border-4 border-[#e85a4f] shadow-lg"
+                  />
+                </div>
+                <h3 class="text-xl font-semibold text-[#e85a4f] mb-2">
+                  {member.name}
+                </h3>
+                <p class="text-base text-[#8e8d8a] mb-3">{member.role}</p>
+                <p class="text-sm text-[#8e8d8a] italic flex-grow">
+                  "{member.description}"
+                </p>
+              </div>
+            ))
+          }
+        </div>
+
+        {/* Second Row - 4 Members */}
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 mb-12">
+          {
+            [
+              {
+                name: "AMAY M THAMBAN",
+                role: "Chief Operations Officer",
+                description: "S6 ECE, CETKR",
+                icon: "/students/amaypic.jpg",
+              },
+              {
+                name: "SREEDEV P V",
+                role: "Chief Technical Officer",
+                description: "S6 ECE, CETKR",
+                icon: "/students/sreedv.jpg",
+              },
+              {
+                name: "HEBA HASSAN",
+                role: "Chief Community Officer",
+                description: "S6 CSE A, CETKR",
+                icon: "/students/heba.jpg",
+              },
+              {
+                name: "KOVAPPURATH SHADMAN ",
+                role: "Chief Financial Officer",
+                description: "S6 CSE A, CETKR",
+                icon: "/students/shadm.jpg",
+              },
+              {
+                name: "DEVAMRUTH A",
+                role: "Chief Creative Officer",
+                description: "S6 CSE A, CETKR",
+                icon: "/students/devamruth.png",
+              },
+              {
+                name: "MOHAMMED SHAMEEL",
+                role: "Chief Marketing Officer",
+                description: "S6 ECE , CETKR",
+                icon: "/students/shamil.png",
+              },
+              {
+                name: "RIHDA DAVOOD",
+                role: "Women Entrepreneurship Officer",
+                description: "S4 CSE A, CETKR",
+                icon: "/students/ridha.jpg",
+              },
+              {
+                name: "ANUKHETH SUNIL M",
+                role: "IPR & Research Officer",
+                description: "S6 CSE A, CETKR",
+                icon: "/students/anuketh.jpg",
+              },
+            ].map((member, index) => (
+              <div
+                class="bg-[#d8c3a5] p-4 rounded-lg text-center hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-2 flex flex-col team-member"
+                style={`animation-delay: ${(index + 2) * 100}ms`}
+              >
+                <div class="mb-3 flex justify-center">
+                  <img
+                    src={member.icon}
+                    alt={member.name}
+                    class="w-24 h-24 object-cover rounded-full border-3 border-[#e85a4f] shadow-md"
+                  />
+                </div>
+                <h3 class="text-sm md:text-base font-semibold text-[#e85a4f] mb-1">
+                  {member.name}
+                </h3>
+                <p class="text-xs md:text-sm text-[#8e8d8a] mb-2">
+                  {member.role}
+                </p>
+                <p class="text-xs md:text-sm text-[#8e8d8a] mb-2">
+                  {member.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+
+       
+      </div>
+
+   
+  </main>
+</Layout>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+  .team-member {
+    animation: fadeIn 0.8s ease-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const teamMembers = document.querySelectorAll(
+      ".team-member"
+    ) as NodeListOf<HTMLElement>;
+    const observerOptions = {
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).style.animationPlayState = "running";
+          (entry.target as HTMLElement).style.opacity = "1";
+        }
+      });
+    }, observerOptions);
+
+    teamMembers.forEach((member) => {
+      observer.observe(member);
+    });
+  });
+</script>
