@@ -5,7 +5,10 @@ import logo from "../assets/images/square.png";
 import '../styles/global.css';
 ---
 
-<nav id="main-navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-in-out">
+<nav 
+  id="main-navbar" 
+  class="fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-in-out"
+>
   <div class="container mx-auto px-4 py-3 md:px-6 lg:px-8">
     <div class="flex items-center justify-between">
       {/* Logo */}
@@ -154,10 +157,49 @@ import '../styles/global.css';
   </div>
 </nav>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('main-navbar');
+    let lastScrollTop = 0;
+    const scrollThreshold = 100;
+    let isHidden = false;
+
+    // Add null check to prevent potential errors
+    if (navbar) {
+      window.addEventListener('scroll', () => {
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Add scrolled background
+        if (currentScrollTop > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+
+        // Auto-hide logic
+        if (currentScrollTop > lastScrollTop && currentScrollTop > scrollThreshold && !isHidden) {
+          // Scrolling down
+          navbar.style.transform = 'translateY(-100%)';
+          isHidden = true;
+        } else if (currentScrollTop < lastScrollTop && isHidden) {
+          // Scrolling up
+          navbar.style.transform = 'translateY(0)';
+          isHidden = false;
+        }
+
+        lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+      }, { passive: true });
+    } else {
+      console.warn('Navbar element not found. Scroll effects will not be applied.');
+    }
+  });
+</script>
+
 <style>
   #main-navbar {
     background-color: transparent;
     box-shadow: none;
+    will-change: transform; /* Performance optimization */
   }
   #main-navbar.scrolled {
     background-color: rgba(234, 231, 220, 0.95);
@@ -202,37 +244,3 @@ import '../styles/global.css';
     border-radius: 4px;
   }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const navbar = document.getElementById('main-navbar');
-    
-    if (navbar) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
-      });
-    } else {
-      console.warn('Navbar element not found. Scroll effect will not be applied.');
-    }
-
-    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
-    const mobileMenuClose = document.getElementById("mobile-menu-close");
-    const mobileMenu = document.getElementById("mobile-menu");
-
-    if (mobileMenuToggle && mobileMenuClose && mobileMenu) {
-      mobileMenuToggle.addEventListener("click", () => {
-        mobileMenu.classList.remove("-translate-x-full");
-      });
-
-      mobileMenuClose.addEventListener("click", () => {
-        mobileMenu.classList.add("-translate-x-full");
-      });
-    } else {
-      console.warn('One or more mobile menu elements not found. Mobile menu functionality will not work.');
-    }
-  });
-</script>

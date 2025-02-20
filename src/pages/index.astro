@@ -1,23 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Gallery from "../components/Gallery.jsx";
 import "../styles/global.css";
-
-
 ---
 
 <Layout title="IEDC CETKR - Innovate, Empower, Excel">
-  <main class="bg-[#eae7dc] text-[#8e8d8a] p-8">
+  <main class="bg-[#f4f1de] text-[#2c3e50] p-8">
     {/* Hero Section */}
     <section class="container mt-20 md:mt-34 mx-auto px-4 py-12 md:py-16 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
       <div class="md:w-1/2 w-full text-center md:text-left space-y-4 md:space-y-6">
         <h1 class="text-4xl md:text-6xl font-semibold">Welcome to,<br>IEDC CETKR</h1>
-        <h2 class="hidden md:block text-3xl md:text-5xl font-bold text-[#e85a4f] leading-tight animate-slide-in-left">
+        <h2 class="hidden md:block text-3xl md:text-5xl font-bold text-[#c0392b] leading-tight animate-slide-in-left">
           Innovate.<br> Inspire.<br> Impact.
         </h2>
-        <h2 class="block md:hidden text-3xl md:text-5xl font-bold text-[#e85a4f] leading-tight animate-slide-in-left">
+        <h2 class="block md:hidden text-3xl md:text-5xl font-bold text-[#c0392b] leading-tight animate-slide-in-left">
           Innovate. Inspire. Impact.
         </h2>
-        <p class="text-base md:text-xl leading-relaxed text-[#8e8d8a] animate-slide-in-right">
+        <p class="text-base md:text-xl leading-relaxed text-[#34495e] animate-slide-in-right">
           The Innovation and Entrepreneurship Development Cell (IEDC) at College of Engineering Trikaripur 
           is dedicated to nurturing young innovators and entrepreneurs, transforming creative ideas into 
           impactful solutions.
@@ -25,13 +24,13 @@ import "../styles/global.css";
         <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 animate-fade-in">
           <a 
             href="/events" 
-            class="bg-[#e85a4f] text-white px-6 py-3 rounded-lg hover:bg-[#e98074] transition-colors text-center inline-block"
+            class="bg-[#c0392b] text-white px-6 py-3 rounded-lg hover:bg-[#e74c3c] transition-colors text-center inline-block"
           >
             Upcoming Events
           </a>
           <a 
             href="mailto:iedc@cetkr.ac.in" 
-            class="border-2 border-[#e85a4f] text-[#e85a4f] px-6 py-3 rounded-lg hover:bg-[#e85a4f]/10 transition-colors text-center inline-block"
+            class="border-2 border-[#c0392b] text-[#c0392b] px-6 py-3 rounded-lg hover:bg-[#c0392b]/10 transition-colors text-center inline-block"
           >
             Contact Us
           </a>
@@ -46,100 +45,11 @@ import "../styles/global.css";
       </div>
     </section>
 
-    {/* Event Gallery Section */}
-    <section class="bg-[#eae7dc] py-16 ">
-      <div class="container mx-auto px-4 mt-14">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-[#e85a4f] mb-16 animate-fade-in">
-          Gallery
-        </h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
-          {[
-            { 
-              src: "/events/anukiedc2.jpg", 
-              type: "image",
-              title: "The Weeknd Huddle-2" 
-            },
-            { 
-              src: "/events/video1.mp4", 
-              type: "video",
-              title: "Innovation Workshop Highlights" 
-            },
-            { 
-              src: "/events/video2.mp4", 
-              type: "video",
-              title: "Session on Entrepreneurship" 
-            },
-            { 
-              src: "/events/yadhuviedo.mp4", 
-              type: "video",
-              title: "Session on Personal Branding" 
-            },
-            { 
-              src: "/events/ysdhu2.jpg", 
-              type: "image",
-              title: "Networking Event" 
-            },
-            { 
-              src: "/events/anukiedc1.jpg", 
-              type: "image",
-              title: "Tech Talk Session" 
-            }
-          ].map((item, index) => (
-            
-            <div 
-              class={`relative group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 animate-stagger-${index}`}
-              data-modal-target={`modal-${index}`}
-            >
-             
-              
-              {item.type === 'image' ? (
-                <img 
-                  src={item.src} 
-                  alt={item.title}
-                  loading="lazy"
-                  class="w-full h-48 md:h-64 min-h-[12rem] object-contain bg-[#d8c3a5] rounded-lg"
-                  onerror="console.error('Image failed:', this.src); this.style.display='none'"
-                  onload="console.log('Image loaded successfully:', this.src)"
-                />
-              ) : (
-                <video 
-                  src={item.src}
-                  controls
-                  class="w-full h-48 md:h-64 min-h-[12rem] object-contain bg-[d8c3a5] rounded-lg"
-                  preload="metadata"
-                  onerror="console.error('Video failed:', this.src); this.style.display='none'"
-                  onloadedmetadata="console.log('Video metadata loaded:', this.src)"
-                >
-                  <track kind="captions" />
-                </video>
-              )}
-            </div>
-          ))}
-        </div>
-        
-        <div class="text-center mt-12">
-          <a 
-            href="/events" 
-            class="bg-[#e85a4f] text-white text-lg font-bold px-8 py-4 rounded-lg hover:bg-[#d64541] transition-colors animate-pulse-once"
-          >
-            View All Events
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const mediaItems = document.querySelectorAll('img, video');
-        mediaItems.forEach(item => {
-          const mediaElement = item as HTMLImageElement | HTMLVideoElement;
-          console.log('Media source:', mediaElement.src);
-        });
-      });
-    </script>
+    {/* React Gallery Component */}
+    <Gallery client:load />
 
     {/* Call to Action */}
-    <section class="bg-[#e85a4f] text-white py-20 text-center">
+    <section class="bg-[#c0392b] text-white py-20 text-center">
       <div class="container mx-auto px-4">
         <h2 class="text-2xl md:text-3xl font-bold mb-6 animate-bounce-in">
           Ready to Spark Your Innovation Journey?
@@ -149,7 +59,7 @@ import "../styles/global.css";
         </p>
         <a 
           href="mailto:iedc@cetkr.ac.in" 
-          class="inline-block bg-white text-[#e85a4f] px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-xl font-semibold hover:bg-[#eae7dc] transition-colors animate-pulse-once"
+          class="inline-block bg-white text-[#c0392b] px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-xl font-semibold hover:bg-[#f4f1de] transition-colors animate-pulse-once"
         >
           Get Involved
         </a>
@@ -188,29 +98,4 @@ import "../styles/global.css";
   .animate-slide-in-right { animation: slideInRight 0.8s ease-out; }
   .animate-bounce-in { animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
   .animate-pulse-once { animation: pulseOnce 1s; }
-
-  .animate-stagger-0 { animation: fadeIn 0.8s ease-out 0.2s backwards; }
-  .animate-stagger-1 { animation: fadeIn 0.8s ease-out 0.4s backwards; }
-  .animate-stagger-2 { animation: fadeIn 0.8s ease-out 0.6s backwards; }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('section');
-    const observerOptions = {
-      threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
-        }
-      });
-    }, observerOptions);
-
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-  });
-</script>
