@@ -2,11 +2,11 @@
 // Navbar.astro
 import { Image } from "astro:assets";
 import logo from "../assets/images/square.png";
-import '../styles/global.css';
+import "../styles/global.css";
 ---
 
-<nav 
-  id="main-navbar" 
+<nav
+  id="main-navbar"
   class="fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-in-out"
 >
   <div class="container mx-auto px-4 py-3 md:px-6 lg:px-8">
@@ -19,23 +19,19 @@ import '../styles/global.css';
             alt="IEDC Logo"
             class="-mt-5 h-24 w-28 object-contain transition-transform"
           />
-          <span
-            class="text-2xl font-bold text-[#E85A4F]"
-          >
+          <span class="text-2xl font-bold text-[#E85A4F]">
             IEDC<br />CETKR
           </span>
         </a>
       </div>
-      <div class=" items-center flex md:hidden">
+      <div class="items-center flex md:hidden">
         <a href="/" class="flex items-center space-x-2 group">
           <Image
             src={logo}
             alt="IEDC Logo"
             class="-mt-5 h-10 w-10 object-contain transition-transform"
           />
-          <span
-            class="text-xl font-bold text-[#E85A4F]"
-          >
+          <span class="text-xl font-bold text-[#E85A4F]">
             IEDC<br />CETKR
           </span>
         </a>
@@ -158,39 +154,50 @@ import '../styles/global.css';
 </nav>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const navbar = document.getElementById('main-navbar');
+  document.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.getElementById("main-navbar");
     let lastScrollTop = 0;
     const scrollThreshold = 100;
     let isHidden = false;
 
     // Add null check to prevent potential errors
     if (navbar) {
-      window.addEventListener('scroll', () => {
-        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const currentScrollTop =
+            window.pageYOffset || document.documentElement.scrollTop;
 
-        // Add scrolled background
-        if (currentScrollTop > 50) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
+          // Add scrolled background
+          if (currentScrollTop > 50) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
 
-        // Auto-hide logic
-        if (currentScrollTop > lastScrollTop && currentScrollTop > scrollThreshold && !isHidden) {
-          // Scrolling down
-          navbar.style.transform = 'translateY(-100%)';
-          isHidden = true;
-        } else if (currentScrollTop < lastScrollTop && isHidden) {
-          // Scrolling up
-          navbar.style.transform = 'translateY(0)';
-          isHidden = false;
-        }
+          // Auto-hide logic
+          if (
+            currentScrollTop > lastScrollTop &&
+            currentScrollTop > scrollThreshold &&
+            !isHidden
+          ) {
+            // Scrolling down
+            navbar.style.transform = "translateY(-100%)";
+            isHidden = true;
+          } else if (currentScrollTop < lastScrollTop && isHidden) {
+            // Scrolling up
+            navbar.style.transform = "translateY(0)";
+            isHidden = false;
+          }
 
-        lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
-      }, { passive: true });
+          lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+        },
+        { passive: true },
+      );
     } else {
-      console.warn('Navbar element not found. Scroll effects will not be applied.');
+      console.warn(
+        "Navbar element not found. Scroll effects will not be applied.",
+      );
     }
   });
 </script>
@@ -203,7 +210,7 @@ import '../styles/global.css';
   }
   #main-navbar.scrolled {
     background-color: rgba(234, 231, 220, 0.95);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   /* Custom animated underline */
@@ -212,7 +219,7 @@ import '../styles/global.css';
     text-decoration: none;
   }
   .animated-underline::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 0;
     height: 3px; /* Increased underline thickness */

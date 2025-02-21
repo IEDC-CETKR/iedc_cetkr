@@ -22,8 +22,8 @@
       "id": 2,
       "title": "The Weeknd Huddle-2: Personal Branding on LinkedIn",
       "description": "Building your Personal Brand on LinkedIn led by Yadhu Nadanan",
-      "date": "February 14, 2025", 
-      "location": "CETKR Seminar Hall",
+      "date": "February 14, 2025",
+      "location": "Main Seminar Hall, CETKR",
       "images": [
         "/events/Yadhu_Linkedin/ysdhu2.jpg",
         "/events/Yadhu_Linkedin/image1.jpg"
@@ -35,6 +35,46 @@
         "Q&A session",
         "Networking opportunities"
       ]
+    },
+    {
+      "id": 3,
+      "title": "Official IEDC CETKR Innaguration",
+      "description": "Grand inauguration of IEDC CETKR, marking the beginning of innovation and entrepreneurship.",
+      "date": "February 20, 2025",
+      "location": "Main Seminar Hall, CETKR",
+      "images": [
+        "/events/Innaguration/1.jpg",
+        "/events/Innaguration/2.jpg",
+        "/events/Innaguration/3.jpg"
+      ],
+      "poster": "/events/Innaguration/poster.png",
+      "highlights": [
+        "Official Inauguration of IEDC CETKR",
+        "Keynote Address by Principal",
+        "Introduction to IEDC Vision & Mission",
+        "Startup & Innovation Opportunities for Students",
+        "Networking & Collaboration Session"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "The Weekend Huddle-3: The Art of Persuasive Communication in Entrepreneurship",
+      "description": "An insightful session with Abdullahi Farhan on mastering persuasive communication to pitch ideas, influence decisions, and create an impact in the business world.",
+      "date": "February 20, 2025",
+      "location": "Main Seminar Hall, CETKR",
+      "images": [
+        "/events/Farhan_Comms/1.jpg",
+        "/events/Farhan_Comms/2.jpg"
+      ],
+      "poster": "/events/Farhan_Comms/poster.png",
+      "highlights": [
+        "Mastering Persuasive Communication",
+        "Speaker: Abdullahi Farhan",
+        "Attracting Investors & Customers",
+        "Building Strong Teams & Partnerships",
+        "Q&A and Networking Session"
+      ]
     }
+    
   ]
 }

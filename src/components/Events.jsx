@@ -1,17 +1,112 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import eventsData from '../data/events.json';
 
-const EventCard = ({ event, onImageClick }) => {
+const ImageViewer = ({ images, initialIndex = 0, onClose }) => {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex(prev => (prev + 1) % images.length);
+  }, [images]);
+
+  const handlePrev = useCallback(() => {
+    setCurrentIndex(prev => (prev - 1 + images.length) % images.length);
+  }, [images]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') handleNext();
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'Escape') onClose();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleNext, handlePrev, onClose]);
+
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-      <div className="relative">
+    <div 
+      className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center"
+    >
+      {/* Navigation and Close Buttons */}
+      <div className="absolute top-4 right-4 flex space-x-4">
+        <button 
+          onClick={onClose}
+          className="text-white text-3xl hover:text-gray-300 transition-colors"
+        >
+          ✕
+        </button>
+      </div>
+
+      {/* Image Navigation */}
+      {images.length > 1 && (
+        <>
+          <button 
+            onClick={handlePrev}
+            className="absolute left-4 top-1/2 -translate-y-1/2 
+              bg-white/20 text-white p-2 rounded-full hover:bg-white/40 transition-colors"
+          >
+            ←
+          </button>
+          <button 
+            onClick={handleNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 
+              bg-white/20 text-white p-2 rounded-full hover:bg-white/40 transition-colors"
+          >
+            →
+          </button>
+        </>
+      )}
+
+      {/* Image Container */}
+      <div className="relative max-w-full max-h-full">
+        <img 
+          src={images[currentIndex]} 
+          alt={`Image ${currentIndex + 1}`}
+          className="object-contain max-w-full max-h-[90vh]"
+        />
+      </div>
+
+      {/* Image Info */}
+      {images.length > 1 && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 
+          bg-white/20 text-white px-4 py-2 rounded-full"
+        >
+          {currentIndex + 1} / {images.length}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const EventCard = ({ event }) => {
+  const [isImageViewerOpen, setIsImageViewerOpen] = useState(false);
+  const [viewerImages, setViewerImages] = useState([]);
+  const [initialImageIndex, setInitialImageIndex] = useState(0);
+
+  const openImageViewer = (images, startIndex = 0) => {
+    setViewerImages(images);
+    setInitialImageIndex(startIndex);
+    setIsImageViewerOpen(true);
+  };
+
+  return (
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden w-full flex flex-col">
+      {/* Full Poster Image */}
+      <div 
+        className="w-full cursor-pointer"
+        onClick={() => openImageViewer([event.poster])}
+      >
         <img 
           src={event.poster} 
           alt={`${event.title} Poster`} 
-          className="w-full h-auto object-cover"
+          className="w-full h-auto object-contain"
         />
       </div>
-      <div className="p-6">
+
+      <div className="p-6 flex-grow flex flex-col">
         <h3 className="text-xl font-bold text-[#e85a4f] mb-2">
           {event.title}
         </h3>
@@ -36,36 +131,62 @@ const EventCard = ({ event, onImageClick }) => {
             ))}
           </ul>
         </div>
-        <div className="mb-4 grid grid-cols-2 gap-2">
-          {event.images.map((image, index) => (
-            <img 
-              key={index}
-              src={image} 
-              alt={`${event.title} Event Image`} 
-              className="w-full h-24 object-cover rounded-lg grayscale hover:grayscale-0 transition-all cursor-pointer"
-              onClick={() => onImageClick(image)}
-            />
-          ))}
+
+        {/* Gallery Preview */}
+        <div className="mt-auto">
+          {event.images.length > 0 && (
+            <div className="flex space-x-2 mb-4">
+              {event.images.slice(0, 2).map((image, index) => (
+                <div 
+                  key={index} 
+                  className="w-1/2 h-24 relative"
+                  onClick={() => openImageViewer(event.images, index)}
+                >
+                  <img 
+                    src={image} 
+                    alt={`Event Preview ${index + 1}`} 
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                  {event.images.length > 2 && index === 1 && (
+                    <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                      <span className="text-white text-lg">
+                        +{event.images.length - 2} More
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Gallery Button */}
+          {event.images.length > 0 && (
+            <button 
+              onClick={() => openImageViewer(event.images)}
+              className="w-full bg-[#e85a4f] text-white py-2 rounded-lg hover:bg-[#c0392b] transition-colors"
+            >
+              View Event Gallery
+            </button>
+          )}
         </div>
       </div>
+
+      {/* Image Viewer Modal */}
+      {isImageViewerOpen && (
+        <ImageViewer 
+          images={viewerImages}
+          initialIndex={initialImageIndex}
+          onClose={() => setIsImageViewerOpen(false)}
+        />
+      )}
     </div>
   );
 };
 
 const EventsPage = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const openLightbox = (image) => {
-    setSelectedImage(image);
-  };
-
-  const closeLightbox = () => {
-    setSelectedImage(null);
-  };
-
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl md:text-4xl font-bold text-[#e85a4f] text-center mb-12">
+    <div className="container mx-auto px-4 py-8 pt-36">
+      <h1 className="text-3xl md:text-4xl font-bold text-[#e85a4f] text-center mb-16">
         Completed Events
       </h1>
       
@@ -74,26 +195,9 @@ const EventsPage = () => {
           <EventCard 
             key={event.id} 
             event={event} 
-            onImageClick={openLightbox}
           />
         ))}
       </div>
-
-      {/* Lightbox */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4"
-          onClick={closeLightbox}
-        >
-          <div className="max-w-4xl max-h-[90vh]">
-            <img 
-              src={selectedImage} 
-              alt="Event Image" 
-              className="w-full h-full object-contain rounded-lg"
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 };
