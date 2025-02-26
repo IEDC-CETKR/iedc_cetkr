@@ -199,7 +199,25 @@ import "../styles/global.css";
         "Navbar element not found. Scroll effects will not be applied.",
       );
     }
+
+const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenuClose = document.getElementById("mobile-menu-close");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (mobileMenuToggle && mobileMenuClose && mobileMenu) {
+      mobileMenuToggle.addEventListener("click", () => {
+        mobileMenu.classList.remove("-translate-x-full");
+      });
+
+      mobileMenuClose.addEventListener("click", () => {
+        mobileMenu.classList.add("-translate-x-full");
+      });
+    } else {
+      console.warn('One or more mobile menu elements not found. Mobile menu functionality will not work.');
+    }
   });
+
+
 </script>
 
 <style>
