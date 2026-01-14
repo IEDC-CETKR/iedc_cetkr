@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import eventsData from '../data/events.json';
+import eventsData from '../data/events.js';
 
 const ImageViewer = ({ images, initialIndex = 0, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);

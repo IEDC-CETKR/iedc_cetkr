@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import Gallery from "../components/Gallery.jsx";
 import "../styles/global.css";
+import { Image } from "astro:assets";
+import heroImage from "../assets/events/image1.jpg";
 ---
 
 <Layout title="IEDC CETKR - Innovate, Empower, Excel">
@@ -37,8 +39,8 @@ import "../styles/global.css";
         </div>
       </div>
       <div class="md:w-1/2 w-full flex justify-center animate-bounce-in mt-4">
-        <img 
-          src="/events/image1.jpg" 
+        <Image 
+          src={heroImage} 
           alt="IEDC CETKR Event" 
           class="object-cover max-h-[600px] w-full max-w-[800px] rounded-xl shadow-lg"
         />

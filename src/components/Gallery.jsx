@@ -1,9 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import anukiedc1 from '../assets/gallery/anukiedc1.jpg';
+import anukiedc2 from '../assets/gallery/anukiedc2.jpg';
+import ysdhu2 from '../assets/gallery/ysdhu2.jpg';
 
 const galleryItems = [
-  { type: 'image', src: '/gallery/anukiedc1.jpg', alt: 'IEDC Event 1' },
-  { type: 'image', src: '/gallery/anukiedc2.jpg', alt: 'IEDC Event 2' },
-  { type: 'image', src: '/gallery/ysdhu2.jpg', alt: 'IEDC Event 3' },
+  { type: 'image', src: anukiedc1.src || anukiedc1, alt: 'IEDC Event 1' },
+  { type: 'image', src: anukiedc2.src || anukiedc2, alt: 'IEDC Event 2' },
+  { type: 'image', src: ysdhu2.src || ysdhu2, alt: 'IEDC Event 3' },
   { type: 'video', src: '/gallery/video1.mp4', alt: 'IEDC Video 1' },
   { type: 'video', src: '/gallery/video2.mp4', alt: 'IEDC Video 2' },
   { type: 'video', src: '/gallery/yadhuviedo.mp4', alt: 'IEDC Video 3' }
